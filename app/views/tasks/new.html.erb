@@ -12,12 +12,12 @@
   <% end %>
   <%= f.label :due_date, "Due Date", class: 'my_label' %><br>
 
-  <div style="margin-left: 10%;">
+  <div class="left-10">
     <%= f.date_select :due_date %><br><br>
   </div>
   <%= f.label :assigned_to, "Assigned to", class: 'my_label' %><br>
 
-  <div style="margin-left: 10%;">
+  <div class="left-10">
     <%= f.collection_select :assigned_to, @users, :name, :name, {include_blank: true} %><br><br>
   </div>
   <div>

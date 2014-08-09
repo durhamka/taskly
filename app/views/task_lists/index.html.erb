@@ -18,9 +18,9 @@
     <%= link_to "Edit", edit_task_list_path(task_list.id), {:style => 'width:10%; float:left;' } %>
     <%= link_to "+ Add New Task", new_task_list_task_path(task_list.id), {:style => 'float:left;' } %>
     <br style="clear:both;">
-    <% if task_list.tasks.length == 0 %>
+    <% if task_list.tasks.select {|task| task[:completed] == false }.length == 0 %>
       <div class="tasks" >
-        <div style="text-align: center; padding-top: 12px;">
+        <div style="text-align: center;" class="pad-top-12" >
           "Nothing here to see!"
         </div>
 
@@ -29,7 +29,7 @@
     <% task_list.tasks.sort_by {|task| task.due_date }.each do |task| %>
       <% unless task.completed %>
       <div class="tasks">
-        <div id="task-<%= task.id%>" style="margin-left: 20px; padding-top: 12px;">
+        <div id="task-<%= task.id%>" class="left-10 pad-top-12" >
           <%= task.description  %>
           (<%= (task.due_date - Date.today).to_i %> days) -
           <b><%= task.assigned_to %></b>
