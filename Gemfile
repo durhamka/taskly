@@ -11,8 +11,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 
-gem "spring", group: :development
-gem "spring-commands-rspec", :group => :development
+group :development do
+  gem "spring"
+  gem "spring-commands-rspec"
+end
 
 group :development, :test do
   gem "rspec-rails", "3.0.1"
