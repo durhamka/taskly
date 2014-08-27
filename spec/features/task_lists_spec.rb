@@ -46,4 +46,20 @@ feature 'Task lists' do
     expect(page).to have_content("Your task list could not be created")
   end
 
+  scenario "user can edit a task list" do
+    TaskList.create(:name => "Some task list")
+
+    signin
+
+    click_on "Edit"
+
+    expect(find_field("Name").value).to eq("Some task list")
+
+    fill_in "Name", :with => "A new name"
+    click_on "Create Task List"
+
+    expect(page).to have_content("Task List was updated successfully")
+    expect(page).to have_content("A new name")
+  end
+
 end

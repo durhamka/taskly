@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   get "/about" => "about#show"
 
-  resources :task_lists, :only => [:new, :create, :index]
+  resources :task_lists
 end

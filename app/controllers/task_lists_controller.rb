@@ -8,6 +8,21 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.new
   end
 
+  def edit
+    @task_list = TaskList.find(params[:id])
+  end
+
+  def update
+    @task_list = TaskList.find(params[:id])
+
+    if @task_list.update(allowed_params)
+      flash[:notice] = "Task List was updated successfully"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def create
     @task_list = TaskList.new(allowed_params)
 
