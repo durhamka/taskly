@@ -2,8 +2,13 @@
 
 <% @task_lists.each do |task_list| %>
 
-  <section class="task-list">
-    <h1><%= task_list.name %></h1>
-  </section>
+    <section class="task-list">
+        <h1><%= task_list.name %></h1>
+    </section>
 
 <% end %>
+
+<section class="js-output">
+    <h1>JS Output</h1>
+    <ul></ul>
+</section>
