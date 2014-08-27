@@ -26,6 +26,7 @@
   color: red;
 }
 
+
 #flash {
   border: 1px solid black;
   padding: 15px;
@@ -126,11 +127,21 @@ main {
 
 .task-list {
   padding: 1em;
+
   & + & {
     border-top: 1px solid darkblue;
   }
 
   h1 {
     font-size: 110%;
+    display: inline-block;
+  }
+
+  .actions {
+    float: right;
+    
+    ul {
+      list-style: none;
+    }
   }
 }
