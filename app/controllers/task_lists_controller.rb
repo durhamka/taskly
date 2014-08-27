@@ -1,6 +1,6 @@
 class TaskListsController < ApplicationController
 
-  def index
+  def index # /task_lists
     @task_lists = TaskList.order(:name)
 
     respond_to do |format|
