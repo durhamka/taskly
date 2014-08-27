@@ -36,4 +36,14 @@ feature 'Task lists' do
     expect(page).to have_content("Some new task list")
   end
 
+  scenario "user can view errors on a task list" do
+    signin
+
+    click_on "Add Task List"
+
+    click_on "Create Task List"
+
+    expect(page).to have_content("Your task list could not be created")
+  end
+
 end
