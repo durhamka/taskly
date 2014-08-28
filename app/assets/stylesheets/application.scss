@@ -88,3 +88,18 @@ main {
 .about {
   text-align: center;
 }
+
+.flash {
+  border: 1px solid black;
+  padding: 15px;
+  background-color: darkgreen;
+}
+
+.task-form {
+  #submit input {
+    color: white;
+    background: blue;
+    margin-top: 20px;
+    padding-right: 40px;
+  }
+}
