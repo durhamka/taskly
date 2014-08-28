@@ -16,4 +16,10 @@ feature 'Auth' do
     expect(page).to have_content("user@example.com")
   end
 
+  scenario 'Anonymous user can view the about page' do
+    visit root_path
+    click_on "About"
+
+    expect(page).to have_content("Taskly is a great way to manage your to do's")
+  end
 end
