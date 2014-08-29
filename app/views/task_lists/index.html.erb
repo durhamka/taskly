@@ -3,6 +3,9 @@
 <% @task_lists.each do |task_list| %>
 
   <section class="task-list">
+    <div class="actions">
+      <%= link_to "Edit", edit_task_list_path(task_list) %>
+    </div>
     <h1><%= task_list.name %></h1>
   </section>
 

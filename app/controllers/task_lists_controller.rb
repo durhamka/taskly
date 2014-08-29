@@ -19,6 +19,19 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def edit
+    @task_list = TaskList.find(params[:id])
+  end
+
+  def update
+    @task_list = TaskList.find(params[:id])
+    if @task_list.update_attributes(task_list_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def task_list_params
