@@ -14,7 +14,7 @@ class TaskListsController < ApplicationController
       flash[:notice] = "Task List was created successfully"
       redirect_to root_path
     else
-      flash[:notice] = "Sorry, something went wrong"
+      flash[:notice] = "Your task list could not be created"
       render :new
     end
   end
