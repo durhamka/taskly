@@ -6,11 +6,7 @@ feature 'Tasks' do
     create_user email: "user@example.com"
     TaskList.create!(name: "Work List")
     TaskList.create!(name: "Household Chores")
-    visit signin_path
-    click_on "Login"
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    login
 
     within("section", :text => "Work List") do
       click_on "+ Add Task"
@@ -31,12 +27,7 @@ feature 'Tasks' do
   scenario 'User cannot add a task without a description' do
     create_user email: "user@example.com"
     TaskList.create!(name: "Work List")
-
-    visit signin_path
-    click_on "Login"
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    login
 
     within("section", :text => "Work List") do
       click_on "+ Add Task"
@@ -49,11 +40,7 @@ feature 'Tasks' do
     create_user email: "user@example.com"
     TaskList.create!(name: "HarHoo List")
 
-    visit signin_path
-    click_on "Login"
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    login
     within("section", :text => "HarHoo List") do
       click_on "+ Add Task"
     end
@@ -70,12 +57,7 @@ feature 'Tasks' do
   scenario 'User can complete a task' do
     create_user email: "user@example.com"
     TaskList.create!(name: "HarHoo List")
-
-    visit signin_path
-    click_on "Login"
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    login
     within("section", :text => "HarHoo List") do
       click_on "+ Add Task"
     end
@@ -88,5 +70,13 @@ feature 'Tasks' do
 
     expect(page).to_not have_content("Clean up toys")
     expect(page).to have_content("Task was completed successfully")
+  end
+
+  def login
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
   end
 end
