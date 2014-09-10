@@ -67,4 +67,29 @@ feature 'Task lists' do
     click_on "Edit Task List"
     expect(page).to have_content "Harleigh's updated task list"
   end
+
+  scenario 'User can view completed tasks for a task list' do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "HarHoo List")
+
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+
+    within("section", :text => "HarHoo List") do
+      click_on "+ Add Task"
+    end
+    fill_in "Description", with: "Pick up dog poop"
+    click_on "Create Task"
+
+    within("section", :text => "HarHoo List") do
+      click_on "Complete"
+    end
+
+    click_on "Completed Tasks"
+    expect(page).to have_content("Completed Tasks")
+    expect(page).to have_content("Pick up dog poop")
+  end
 end

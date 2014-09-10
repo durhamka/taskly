@@ -5,4 +5,8 @@ class TaskList < ActiveRecord::Base
   def incomplete_tasks
     tasks.where(:complete => nil)
   end
+
+  def completed_tasks
+    tasks.where(:complete => true)
+  end
 end

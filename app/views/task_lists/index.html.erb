@@ -5,6 +5,7 @@
   <section class="task-list">
     <div class="actions">
       <%= link_to "Edit", edit_task_list_path(task_list) %>
+      <%= link_to "Completed Tasks", task_list_completed_tasks_path(task_list) %>
     </div>
     <div id="tasks"
       <h1><%= task_list.name %></h1>
