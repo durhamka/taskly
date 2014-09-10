@@ -68,6 +68,25 @@ feature 'Task lists' do
     expect(page).to have_content "Harleigh's updated task list"
   end
 
+  scenario 'User can delete a task list' do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "Harleigh's List")
+    TaskList.create!(name: "Kinsey")
+
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+
+    within("section", :text => "Kinsey") do
+      click_on "Delete Task List"
+    end
+
+    expect(page).to have_content("Harleigh's List")
+    expect(page).to_not have_content("Kinsey")
+  end
+
   scenario 'User can view completed tasks for a task list' do
     create_user email: "user@example.com"
     TaskList.create!(name: "HarHoo List")

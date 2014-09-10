@@ -32,6 +32,11 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def destroy
+    TaskList.find(params[:id]).destroy
+    redirect_to root_path
+  end
+
   private
 
   def task_list_params
