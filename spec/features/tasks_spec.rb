@@ -44,4 +44,25 @@ feature 'Tasks' do
     click_on "Create Task"
     expect(page).to have_content("Your task could not be created")
   end
+
+  scenario 'User can delete a task' do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "HarHoo List")
+
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    within("section", :text => "HarHoo List") do
+      click_on "+ Add Task"
+    end
+    fill_in "Description", with: "Clean up toys"
+    click_on "Create Task"
+
+    within("section", :text => "HarHoo List") do
+      click_on "Delete"
+    end
+    expect(page).to_not have_content("Clean up toys")
+  end
 end

@@ -66,5 +66,6 @@ feature 'Task lists' do
     fill_in "Name", with: "Harleigh's updated task list"
     click_on "Edit Task List"
     expect(page).to have_content "Harleigh's updated task list"
+    expect(page).to have_content "Task was deleted successfully"
   end
 end
