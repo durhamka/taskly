@@ -25,6 +25,12 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def complete
+    Task.find(params[:id]).toggle!(:complete)
+    flash[:notice] = "Task was completed successfully"
+    redirect_to root_path
+  end
+
   private
 
   def task_params
