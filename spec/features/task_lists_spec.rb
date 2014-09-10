@@ -48,7 +48,7 @@ feature 'Task lists' do
     expect(page).to have_content("Your task list could not be created")
   end
 
-  scenario 'User can edit a task' do
+  scenario 'User can edit a task list' do
     create_user email: "user@example.com"
 
     visit signin_path
@@ -66,6 +66,5 @@ feature 'Task lists' do
     fill_in "Name", with: "Harleigh's updated task list"
     click_on "Edit Task List"
     expect(page).to have_content "Harleigh's updated task list"
-    expect(page).to have_content "Task was deleted successfully"
   end
 end
