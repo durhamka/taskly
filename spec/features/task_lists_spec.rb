@@ -111,4 +111,19 @@ feature 'Task lists' do
     expect(page).to have_content("Completed Tasks")
     expect(page).to have_content("Pick up dog poop")
   end
+
+  scenario "User sees a friendly message if there aren't any tasks in the task list" do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "HarHoo List")
+
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+
+    within("section", :text => "HarHoo List") do
+      expect(page).to have_content("Nothing to see here!")
+    end
+  end
 end

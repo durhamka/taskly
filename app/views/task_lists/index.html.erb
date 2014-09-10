@@ -11,15 +11,18 @@
     <div id="tasks"
       <h1><%= task_list.name %></h1>
       <%= link_to "+ Add Task", new_task_list_task_path(task_list) %>
-      <% task_list.incomplete_tasks.each do |task| %>
-        <%= task.description %>
-        <%= task.due_date %>
-        <%= link_to "Delete", task_list_task_path(task_list, task),
+      <% if task_list.tasks.any? %>
+        <% task_list.incomplete_tasks.each do |task| %>
+          <%= task.description %>
+          <%= task.due_date %>
+          <%= link_to "Delete", task_list_task_path(task_list, task),
                   :method => :delete,
                   :data => {:confirm => "Are you sure?", :disable_with => "Deleting..."} %>
-      <%= link_to "Complete", [:complete, task_list, task], method: :post %>
+          <%= link_to "Complete", [:complete, task_list, task], method: :post %>
+        <% end %>
+      <% else %>
+        <p>Nothing to see here!</p>
       <% end %>
     </div>
   </section>
-
 <% end %>
