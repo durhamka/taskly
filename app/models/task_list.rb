@@ -3,7 +3,7 @@ class TaskList < ActiveRecord::Base
   has_many :tasks
 
   def incomplete_tasks
-    tasks.where(:complete => nil)
+    tasks.where(:complete => nil).order(:due_date)
   end
 
   def completed_tasks
