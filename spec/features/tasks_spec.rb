@@ -24,7 +24,24 @@ feature 'Tasks' do
     expect(page).to have_content "Task was created successfully!"
     expect(page).to have_content "Take Harleigh to the park"
     expect(page).to have_content "2014"
-    expect(page).to have_content "April"
+    expect(page).to have_content "04"
     expect(page).to have_content "28"
+  end
+
+  scenario 'User cannot add a task without a description' do
+    create_user email: "user@example.com"
+    TaskList.create!(name: "Work List")
+
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+
+    within("section", :text => "Work List") do
+      click_on "+ Add Task"
+    end
+    click_on "Create Task"
+    expect(page).to have_content("Your task could not be created")
   end
 end

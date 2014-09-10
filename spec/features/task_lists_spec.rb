@@ -33,7 +33,7 @@ feature 'Task lists' do
     expect(page).to have_content "Harleigh's Dog Tasks"
   end
 
-  scenario 'User cannot add a task without a title' do
+  scenario 'User cannot add a task list without a title' do
     create_user email: "user@example.com"
 
     visit signin_path
